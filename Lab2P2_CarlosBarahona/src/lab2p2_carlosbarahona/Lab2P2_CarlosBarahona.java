@@ -46,8 +46,13 @@ public class Lab2P2_CarlosBarahona {
                     int tamPantalla = lectura.nextInt();
                     System.out.println("Sistema operativo por defecto (Windows/ChromeOS)");
                     String OSporDefecto = lectura.next();
-                    if (OSporDefecto == "Windows" || OSporDefecto == "windows" || OSporDefecto == "ChromeOS" || OSporDefecto == "chromeos") {
-                        OSporDefecto = OSporDefecto;
+                    if ("Windows".equals(OSporDefecto) || "windows".equals(OSporDefecto)) {
+                        OSporDefecto = "Windows";
+                    } else if ("ChromeOS".equals(OSporDefecto) || "chromeos".equals(OSporDefecto)) {
+                        OSporDefecto = "ChromeOS";
+
+                    } else {
+                        OSporDefecto = "Otro";
                     };
                     System.out.println("Tiempo que tardo en fabricarse");
                     int tiempoFabr = lectura.nextInt();
@@ -57,12 +62,15 @@ public class Lab2P2_CarlosBarahona {
                     int duracionBat = lectura.nextInt();
                     System.out.println("Tarjeta gráfica (Normal/Gamer)");
                     String tarjeta = lectura.next();
+                    if ("Gamer".equals(tarjeta) || "gamer".equals(tarjeta)) {
+                        tarjeta = "Gamer";
+                    } else if ("Normal".equals(tarjeta) || "normal".equals(tarjeta)) {
+                        tarjeta = "Normal";
+                    } else {
+                        tarjeta = "Normal";
+                    };
                     System.out.println("Tipo de procesador");
                     String tipoProc = lectura.next();
-                    String tarjetaGraf = "";
-                    if (tarjeta == "Normal" || tarjeta == "normal" || tarjeta == "Gamer" || tarjeta == "gamer") {
-                        tarjetaGraf = tarjeta;
-                    };
                     System.out.println("Teclado numérico (Si o No) (Escribir en mayuscula la letra inicial de la respuesta)");
                     String teclado = lectura.next();
                     boolean resp = false;
@@ -73,7 +81,7 @@ public class Lab2P2_CarlosBarahona {
                     }
                     boolean tecladoNum = resp;
 
-                    Computadoras.add(new Computadora(modelo, numSerie, capDiscDuro, tamPantalla, tecladoNum, tipoProc, tarjetaGraf, OSporDefecto, tiempoFabr, capBat, duracionBat));
+                    Computadoras.add(new Computadora(modelo, numSerie, capDiscDuro, tamPantalla, tecladoNum, tipoProc, tarjeta, OSporDefecto, tiempoFabr, capBat, duracionBat));
 
                     break;
                 }
@@ -83,8 +91,8 @@ public class Lab2P2_CarlosBarahona {
                     String serie = lectura.next();
                     int item = 0;
                     for (int i = 0; i < Computadoras.size(); i++) {
-                        String hola = ((Computadora) Computadoras.get(i)).getNumSerie();
-                        if (serie.equals(hola)) {
+                        String NumSerie = ((Computadora) Computadoras.get(i)).getNumSerie();
+                        if (serie.equals(NumSerie)) {
                             item = i;
                             i = Computadoras.size();
                         } else {
@@ -159,8 +167,8 @@ public class Lab2P2_CarlosBarahona {
                     String serie = lectura.next();
                     int item = 0;
                     for (int i = 0; i < Computadoras.size(); i++) {
-                        String hola = ((Computadora) Computadoras.get(i)).getNumSerie();
-                        if (serie.equals(hola)) {
+                        String Num = ((Computadora) Computadoras.get(i)).getNumSerie();
+                        if (serie.equals(Num)) {
                             item = i;
                             i = Computadoras.size();
                         } else {
@@ -180,6 +188,34 @@ public class Lab2P2_CarlosBarahona {
                         System.out.println(Computadoras.get(i));
                     }
                     break;
+                }
+                case 5: {
+                    System.out.println("Computadoras Gamers");
+                    for (int i = 0; i < Computadoras.size(); i++) {
+                        if (((Computadora) Computadoras.get(i)).getTajetaGraf().equals("Gamer") && ((Computadora) Computadoras.get(i)).getTamañoPant() > 17 && ((Computadora) Computadoras.get(i)).isTecladoNum() == true) {
+                            System.out.println(Computadoras.get(i));
+                        }
+                    }
+                    break;
+                }
+                case 6: {
+                    System.out.println("Computadoras Educativas");
+                    for (int i = 0; i < Computadoras.size(); i++) {
+                        if (((Computadora) Computadoras.get(i)).getCapDiscD() < 300 && ((Computadora) Computadoras.get(i)).getOSporDefecto().equals("ChromeOS") && ((Computadora) Computadoras.get(i)).getTamañoPant() < 13) {
+                            System.out.println(Computadoras.get(i));
+                        }
+                    }
+                    break;
+                }
+                case 7: {
+                    System.out.println("Computadoras de poco uso ");
+                    for (int i = 0; i < Computadoras.size(); i++) {
+                        if (((Computadora) Computadoras.get(i)).getTiempoFab() < 2 && ((Computadora) Computadoras.get(i)).getDuracionBat() > 1 && ((Computadora) Computadoras.get(i)).getOSporDefecto().equals("Windows")) {
+                            System.out.println(Computadoras.get(i));
+                        }
+                    }
+                    break;
+
                 }
 
             }
