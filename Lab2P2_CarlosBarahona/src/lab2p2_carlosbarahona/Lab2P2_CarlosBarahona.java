@@ -137,7 +137,7 @@ public class Lab2P2_CarlosBarahona {
                 case 3: {
                     System.out.println("Numero de producto a eliminar de la lista");
                     int numlista = lectura.nextInt();
-                    producto.remove(numlista);
+                    Computadoras.remove(numlista);
                 }
                 break;
                 case 4: {
